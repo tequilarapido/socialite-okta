@@ -35,23 +35,53 @@ $ composer require tequilarapido/socialite-okta
 
 ## Usage
 
-
-## Changelog
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-## Testing
-
-``` bash
-$ composer test
+* Add service provider to `config.php`
+``` php
+Tequilarapido\Okta\OktaServiceProvider::class,
 ```
 
+* If you already use Socialite in your app, remove the socialite service provider from `config/app.php`
+
+* Add Socialite alias 
+``` php
+'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+```
+
+* Add this entries to `config/services.php`
+
+``` php
+'okta' => [
+    'url' => env('OKTA_URL'),
+    'client_id' => env('OKTA_CLIENT_ID'),
+    'client_secret' => env('OKTA_CLIENT_SECRET'),
+    'redirect' => env('OKTA_REDIRECT'),
+],
+``` 
+   
+* Add config variables to your .env file 
+```
+# Okta
+OKTA_URL=https://xxx.okta.com or https://xxx.oktapreview.com  
+OKTA_REDIRECT=http://your-app-url/{callback-route-uri}
+OKTA_CLIENT_ID=XXX
+OKTA_CLIENT_SECRET=XXX
+```   
+
+* Use like any other Socialite driver 
+   
+``` php
+
+    // To get the auhtorization redirect
+    return Socialite::with('okta')->redirect();
+   
+   
+    // To get the okta user
+    $oktaUser = Socialite::driver('okta')->user();
+```   
+   
 ## Security
 
-If you discover any security related issues, please email :author_email instead of using the issue tracker.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+If you discover any security related issues, please email nbourguig@gmail.com instead of using the issue tracker.
 
 ## Credits
 

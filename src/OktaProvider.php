@@ -6,6 +6,7 @@ use Laravel\Socialite\Two\AbstractProvider;
 use Laravel\Socialite\Two\ProviderInterface;
 use Laravel\Socialite\Two\User;
 use Illuminate\Support\Arr;
+use GuzzleHttp\ClientInterface;
 
 class OktaProvider extends AbstractProvider implements ProviderInterface
 {
@@ -22,12 +23,11 @@ class OktaProvider extends AbstractProvider implements ProviderInterface
     const SCOPE_OFFLINE_ACCESS = 'offline_access';
 
     /**
-     * Api base url
-     * @todo get from config
+     * Okta organization url
      *
      * @var string
      */
-    protected $oktaUrl = 'https://tequilarapido.oktapreview.com';
+    protected $oktaUrl;
 
     /**
      * {@inheritdoc}
@@ -39,11 +39,19 @@ class OktaProvider extends AbstractProvider implements ProviderInterface
     ];
 
     /**
-     * The separating character for the requested scopes.
-     *
-     * @var string
+     * {@inheritdoc}
      */
     protected $scopeSeparator = ' ';
+
+    /**
+     * Set the okta base organization url
+     *
+     * @param string $oktaUrl
+     */
+    public function setOktaUrl($oktaUrl)
+    {
+        $this->oktaUrl = $oktaUrl;
+    }
 
     /**
      * {@inheritdoc}
@@ -66,11 +74,12 @@ class OktaProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getTokenFields($code)
     {
-        return array_add(
-            parent::getTokenFields($code), 'grant_type', 'authorization_code'
-        );
+        return [
+            'grant_type' => 'authorization_code',
+            'code' => $code,
+            'redirect_uri' => $this->redirectUrl,
+        ];
     }
-
 
     /**
      * {@inheritdoc}
@@ -108,5 +117,24 @@ class OktaProvider extends AbstractProvider implements ProviderInterface
             'address' => Arr::get($user, 'address'),
             'phone' => Arr::get($user, 'phone'),
         ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAccessTokenResponse($code)
+    {
+        $postKey = (version_compare(ClientInterface::VERSION, '6') === 1) ? 'form_params' : 'body';
+
+        $options = [
+            'headers' => [
+                'Authorization' => 'Basic ' . base64_encode($this->clientId . ':' . $this->clientSecret)
+            ],
+            $postKey => $this->getTokenFields($code),
+        ];
+
+        $response = $this->getHttpClient()->post($this->getTokenUrl(), $options);
+
+        return json_decode($response->getBody(), true);
     }
 }

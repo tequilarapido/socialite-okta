@@ -2,42 +2,19 @@
 
 namespace Tequilarapido\Okta;
 
-use Laravel\Socialite\Contracts\Factory as SocialiteFactory;
+use Illuminate\Support\ServiceProvider;
 
-class OktaServiceProvider extends \Illuminate\Support\ServiceProvider
+class OktaServiceProvider extends ServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
-    /**
-     * Boot the service provider.
+     * Register the service provider.
      *
      * @return void
      */
-    public function boot()
+    public function register()
     {
-        //$this->setupConfig();
-        $this->extendSocialite();
+        $this->app->singleton('Laravel\Socialite\Contracts\Factory', function ($app) {
+            return new SocialiteManager($app);
+        });
     }
-
-    private function extendSocialite()
-    {
-        $socialite = $this->app->make(SocialiteFactory::class);
-
-        $socialite->extend(
-            'okta',
-            function ($app) use ($socialite) {
-                return $socialite->buildProvider(
-                    OktaProvider::class,
-                    $app['config']['services.okta']
-                );
-            }
-        );
-    }
-
-
 }
