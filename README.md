@@ -14,10 +14,7 @@ Laravel Socialite [Okta] (https://www.okta.com) provider
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Changelog](#changelog)
-- [Testing](#testing)
 - [Security](#security)
-- [Contributing](#contributing)
 - [Credits](#credits)
 - [License](#license)
 
