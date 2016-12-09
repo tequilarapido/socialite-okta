@@ -1,15 +1,12 @@
-
+Laravel Socialite [Okta] (https://www.okta.com) provider 
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/tequilarapido/socialite-okta.svg?style=flat-square)](https://packagist.org/packages/tequilarapido/socialite-okta)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/tequilarapido/socialite-okta/master.svg?style=flat-square)](https://travis-ci.org/tequilarapido/socialite-okta)
-[![StyleCI](https://styleci.io/repos/$STYLECI_ID$/shield)](https://styleci.io/repos/$STYLECI_ID$)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/$SENSIOLABS_ID$.svg?style=flat-square)](https://insight.sensiolabs.com/projects/$SENSIOLABS_ID$)
+[![StyleCI](https://styleci.io/repos/76052550/shield)](https://styleci.io/repos/76052550)
 [![Quality Score](https://img.shields.io/scrutinizer/g/tequilarapido/socialite-okta.svg?style=flat-square)](https://scrutinizer-ci.com/g/tequilarapido/socialite-okta)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/tequilarapido/socialite-okta/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/tequilarapido/socialite-okta/?branch=master)
 
 <p align="center">
-    <img src="" />
+    <img src="docs/illustration.jpg" />
 </p>
 
 
@@ -68,6 +65,9 @@ OKTA_CLIENT_SECRET=XXX
 ```   
 
 * Use like any other Socialite driver 
+
+[Laravel Socialite Documentation] (https://laravel.com/docs/5.0/authentication#social-authentication)
+
    
 ``` php
 
