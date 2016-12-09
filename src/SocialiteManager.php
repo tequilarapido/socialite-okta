@@ -5,7 +5,7 @@ namespace Tequilarapido\Okta;
 class SocialiteManager extends \Laravel\Socialite\SocialiteManager
 {
     /**
-     * Creates Okta provider and bind it to Laravel Socialite
+     * Creates Okta provider and bind it to Laravel Socialite.
      *
      * @return \Laravel\Socialite\Two\AbstractProvider
      */
@@ -13,7 +13,7 @@ class SocialiteManager extends \Laravel\Socialite\SocialiteManager
     {
         $config = $this->app['config']['services.okta'];
 
-        $provider =  $this->buildProvider(OktaProvider::class, $config);
+        $provider = $this->buildProvider(OktaProvider::class, $config);
 
         $provider->setOktaUrl($config['url']);
 

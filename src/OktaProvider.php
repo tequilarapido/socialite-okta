@@ -2,16 +2,16 @@
 
 namespace Tequilarapido\Okta;
 
-use Laravel\Socialite\Two\AbstractProvider;
-use Laravel\Socialite\Two\ProviderInterface;
-use Laravel\Socialite\Two\User;
 use Illuminate\Support\Arr;
 use GuzzleHttp\ClientInterface;
+use Laravel\Socialite\Two\User;
+use Laravel\Socialite\Two\AbstractProvider;
+use Laravel\Socialite\Two\ProviderInterface;
 
 class OktaProvider extends AbstractProvider implements ProviderInterface
 {
     /**
-     * Scopes defintions
+     * Scopes defintions.
      *
      * @see http://developer.okta.com/docs/api/resources/oidc.html#scopes
      */
@@ -23,7 +23,7 @@ class OktaProvider extends AbstractProvider implements ProviderInterface
     const SCOPE_OFFLINE_ACCESS = 'offline_access';
 
     /**
-     * Okta organization url
+     * Okta organization url.
      *
      * @var string
      */
@@ -44,7 +44,7 @@ class OktaProvider extends AbstractProvider implements ProviderInterface
     protected $scopeSeparator = ' ';
 
     /**
-     * Set the okta base organization url
+     * Set the okta base organization url.
      *
      * @param string $oktaUrl
      */
@@ -58,7 +58,7 @@ class OktaProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase($this->oktaUrl . '/oauth2/v1/authorize', $state);
+        return $this->buildAuthUrlFromBase($this->oktaUrl.'/oauth2/v1/authorize', $state);
     }
 
     /**
@@ -66,7 +66,7 @@ class OktaProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getTokenUrl()
     {
-        return $this->oktaUrl . '/oauth2/v1/token';
+        return $this->oktaUrl.'/oauth2/v1/token';
     }
 
     /**
@@ -88,10 +88,10 @@ class OktaProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getUserByToken($token)
     {
-        $response = $this->getHttpClient()->get($this->oktaUrl . '/oauth2/v1/userinfo', [
+        $response = $this->getHttpClient()->get($this->oktaUrl.'/oauth2/v1/userinfo', [
             'headers' => [
                 //'Accept' => 'application/json',
-                'Authorization' => 'Bearer ' . $token,
+                'Authorization' => 'Bearer '.$token,
             ],
         ]);
 
@@ -128,7 +128,7 @@ class OktaProvider extends AbstractProvider implements ProviderInterface
 
         $options = [
             'headers' => [
-                'Authorization' => 'Basic ' . base64_encode($this->clientId . ':' . $this->clientSecret)
+                'Authorization' => 'Basic '.base64_encode($this->clientId.':'.$this->clientSecret),
             ],
             $postKey => $this->getTokenFields($code),
         ];
