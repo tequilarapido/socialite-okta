@@ -1,5 +1,11 @@
 Laravel Socialite [Okta] (https://www.okta.com) provider 
 
+
+# ! Deprecated !
+Use this one instead. http://socialiteproviders.github.io/providers/okta/
+
+
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/tequilarapido/socialite-okta.svg?style=flat-square)](https://packagist.org/packages/tequilarapido/socialite-okta)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![StyleCI](https://styleci.io/repos/76052550/shield)](https://styleci.io/repos/76052550)
