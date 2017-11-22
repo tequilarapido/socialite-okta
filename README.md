@@ -29,7 +29,7 @@ $ composer require tequilarapido/socialite-okta
 
 ## Usage
 
-* Add service provider to `config.php`
+* Add service provider to `config/app.php`
 ``` php
 Tequilarapido\Okta\OktaServiceProvider::class,
 ```
