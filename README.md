@@ -1,7 +1,3 @@
-# ! Deprecated !
-Use this one instead. http://socialiteproviders.github.io/providers/okta/
-
-
 Laravel Socialite [Okta] (https://www.okta.com) provider 
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/tequilarapido/socialite-okta.svg?style=flat-square)](https://packagist.org/packages/tequilarapido/socialite-okta)
@@ -13,6 +9,8 @@ Laravel Socialite [Okta] (https://www.okta.com) provider
     <img src="docs/illustration.jpg" />
 </p>
 
+## ! Deprecated !
+Use this one instead. http://socialiteproviders.github.io/providers/okta/
 
 ## Contents
 
