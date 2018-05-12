@@ -10,7 +10,7 @@ Laravel Socialite [Okta] (https://www.okta.com) provider
 </p>
 
 ## ! Deprecated !
-Use this one instead. http://socialiteproviders.github.io/providers/okta/
+Use this one instead. http://socialiteproviders.github.io/providers/okta.html
 
 ## Contents
 
